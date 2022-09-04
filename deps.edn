@@ -1,0 +1,9 @@
+ {:deps {info.sunng/ring-jetty9-adapter {:mvn/version "0.14.3"}
+         org.clojure/clojure {:mvn/version "1.11.1"}
+         ring/ring {:mvn/version "1.9.1"}
+         metosin/compojure-api {:mvn/version "1.1.13"}
+         ring/ring-jetty-adapter {:mvn/version  "1.9.5"}
+         org.clojure/tools.logging {:mvn/version  "0.3.1"}
+         org.eclipse.jetty/jetty-util {:mvn/version "9.4.48.v20220622"}}
+  :paths ["src"]}
+
