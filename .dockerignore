@@ -1,0 +1,8 @@
+.git
+node_modules
+.shadow-cljs
+.cpcache
+target
+resources/public/js
+README.md
+Makefile
