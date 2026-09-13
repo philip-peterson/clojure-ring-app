@@ -6,3 +6,5 @@ out
 .calva/output-window
 .nrepl-port
 node_modules
+.shadow-cljs
+resources/public/js
