@@ -4,7 +4,7 @@ PORT  ?= 3399
 
 .DEFAULT_GOAL := help
 
-.PHONY: help build up down restart logs shell compile watch clean
+.PHONY: help build up down restart logs shell dev compile watch clean
 
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## ' $(MAKEFILE_LIST) \
@@ -26,6 +26,15 @@ logs: ## Follow the container logs
 
 shell: ## Open a bash shell in the running container
 	docker exec -it $(NAME) bash
+
+dev: ## Run server + ClojureScript watcher with live reload (source mounted)
+	docker run --rm -it --init \
+		--name $(NAME) \
+		-p $(PORT):3399 \
+		-v $(PWD)/src:/app/src \
+		-v $(PWD)/resources:/app/resources \
+		-v $(PWD)/shadow-cljs.edn:/app/shadow-cljs.edn \
+		$(IMAGE) sh -c 'clojure -M:cljs watch app & exec clojure -M -m clojure-ring-app.core'
 
 compile: ## Rebuild the ClojureScript bundle into resources/public/js (mounted source)
 	docker run --rm \
